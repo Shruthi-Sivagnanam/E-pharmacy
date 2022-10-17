@@ -1,7 +1,14 @@
 import React from "react";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { addToCartAction } from "../action/cartAction";
 
 export default function MedDes(props) {
+  const dispatch = useDispatch();
+  function addToCartHandler() {
+    props.med.quantity = 1;
+    dispatch(addToCartAction(props.med));
+  }
   return (
     <Modal
       size="lg"
@@ -47,7 +54,7 @@ export default function MedDes(props) {
         </Container>
       </Modal.Body>
       <Modal.Footer>
-        <Button>Add to Bag</Button>
+        <Button onClick={() => addToCartHandler()}>Add to Bag</Button>
       </Modal.Footer>
     </Modal>
   );

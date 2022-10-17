@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Login from "./screen/regLogin/Login";
 import Register from "./screen/regLogin/Register";
 import Logout from "./screen/regLogin/Logout";
+import CartScreen from "./screen/cartScreen/CartScreen";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/logout" element={<Logout />} />
+          <Route exact path="/cartpage" element={<CartScreen />} />
         </Routes>
       </BrowserRouter>
     </div>

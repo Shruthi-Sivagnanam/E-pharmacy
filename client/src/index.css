@@ -13,3 +13,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.flex-container {
+  display: flex !important;
+  margin-bottom: 20px !important;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.bag {
+  background-color: white;
+  color: rgb(13, 110, 253);
+  margin-left: 5px;
+  border-radius: 50px;
+  padding: 3px;
+}

@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 export default function Header() {
   const userdata = useSelector((state) => state.userLoginReducers);
+  const cartData = useSelector((state) => state.addToCartReducers);
   const { user } = userdata;
   return (
     <>
@@ -32,7 +33,10 @@ export default function Header() {
                   <Nav.Link href="/login">Login</Nav.Link>
                 </>
               )}
-              <Nav.Link href="">Bag</Nav.Link>
+              <Nav.Link href="/cartpage">
+                Bag
+                <span className="bag">{cartData.cartItem.length}</span>
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
