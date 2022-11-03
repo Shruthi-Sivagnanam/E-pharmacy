@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Alert } from "react-bootstrap";
 
-export default function Error(heading, content) {
+export default function Error({ heading, content }) {
   const [show, setShow] = useState(true);
 
   if (show) {

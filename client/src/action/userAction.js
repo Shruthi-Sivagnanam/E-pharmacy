@@ -19,6 +19,7 @@ export const userLoginAction = (user) => async (dispatch) => {
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: response.data });
     localStorage.setItem("user", JSON.stringify(response.data));
   } catch (error) {
+    //alert("User login failed");
     dispatch({ type: "USER_LOGIN_FAILED", payload: error });
   }
 };

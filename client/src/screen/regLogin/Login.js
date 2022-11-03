@@ -37,16 +37,16 @@ export default function Login() {
         >
           <h3 className="mb-2">Login</h3>
           <hr />
-          {loading && (
-            <div className="justify-content-center">
-              <SpinnerCircle />
-            </div>
-          )}
           {error && (
             <Error
               heading="Oops!! Login failed"
               content="Please check the login details"
             />
+          )}
+          {loading && (
+            <div className="justify-content-center">
+              <SpinnerCircle />
+            </div>
           )}
           {user && redirect()}
           <Form.Group className="mb-3">
@@ -68,7 +68,7 @@ export default function Login() {
             />
           </Form.Group>
           <Button variant="primary" onClick={submitHandler} className="mb-3">
-            Submit
+            Login
           </Button>
           <p>
             Don't Have Account!? <a href="/register"> Create One</a>

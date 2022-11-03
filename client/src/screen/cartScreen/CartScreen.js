@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCartAction, deleteFromCart } from "../../action/cartAction";
+import Checkout from "../../components/Checkout";
 
 export default function CartScreen() {
   const cartState = useSelector((state) => state.addToCartReducers);
@@ -13,6 +14,7 @@ export default function CartScreen() {
       <div className="row justify-content-center">
         <div className="col-md-6">
           <h2>Med Bag</h2>
+          {empty === false && <h6>Your med bag is empty</h6>}
           {cartItem.map((item) => (
             <div className="flex-container m-1">
               <div className="m-1 w-100 ">
@@ -84,17 +86,28 @@ export default function CartScreen() {
               </div>
               <div className="m-1 w-100 right">
                 <h6>{total}</h6>
-                <h6>{total < 200 ? 10 : 0}</h6>
+                <h6>{total < 200 && total !== 0 ? 10 : 0}</h6>
                 <h6>0</h6>
               </div>
             </div>
-            <h3>Grand Total : {total < 200 ? total + 10 : total}</h3>
+            <h3>
+              Grand Total :{" "}
+              {total < 200 ? (total = total + 10) : (total = total + 10)}
+            </h3>
             <div className="flex-container">
               <div className="m-1 w-100 left">
-                <Button>Cash on Delivery</Button>
+                {localStorage.getItem("user") && !empty ? (
+                  <Button>Cash on Delivery</Button>
+                ) : (
+                  <Button disabled>Cash on Delivery</Button>
+                )}
               </div>
               <div className="m-1 w-100 right">
-                <Button>Pay Now</Button>
+                {localStorage.getItem("user") && !empty ? (
+                  <Checkout amount={total} />
+                ) : (
+                  <Button disabled>Pay Now</Button>
+                )}
               </div>
             </div>
           </div>
