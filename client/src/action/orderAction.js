@@ -12,3 +12,15 @@ export const orderAction = (token, amount) => async (dispatch, getState) => {
     console.log(error);
   }
 };
+
+export const allOrderAction = () => async (dispatch) => {
+  dispatch({ type: "ALL_ORDER_REQUEST" });
+  try {
+    const response = await axios.post("/api/order/allorder");
+    console.log(response);
+    dispatch({ type: "ALL_ORDER_SUCCESS", payload: response.data });
+  } catch (error) {
+    dispatch({ type: "ALL_ORDER_FAILED", payload: error });
+    console.log(error);
+  }
+};

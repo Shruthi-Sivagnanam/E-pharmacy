@@ -8,12 +8,14 @@ import {
 } from "./reducers/userReducers";
 import { allMedReducers } from "./reducers/medReducers";
 import { addToCartReducers } from "./reducers/cartReducers";
+import { allOrderReducers } from "./reducers/orderReducers";
 
 const finalReducers = combineReducers({
   userRegisterReducers: userRegisterReducers,
   userLoginReducers: userLoginReducers,
   allMedReducers: allMedReducers,
   addToCartReducers: addToCartReducers,
+  allOrderReducers: allOrderReducers,
 });
 
 const user = localStorage.getItem("user")

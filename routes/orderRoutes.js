@@ -53,4 +53,14 @@ router.post("/placeorder", async (req, res) => {
   }
 });
 
+router.post("/allorder", (req, res) => {
+  Order.find()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((error) => {
+      return res.status(400).json({ message: error });
+    });
+});
+
 module.exports = router;
