@@ -39,4 +39,14 @@ router.post("/login", (req, res) => {
     });
 });
 
+router.get("/alluser", (req, res) => {
+  User.find()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((error) => {
+      res.status(404).json({ message: error });
+    });
+});
+
 module.exports = router;

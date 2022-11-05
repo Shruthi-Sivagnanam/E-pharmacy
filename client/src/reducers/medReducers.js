@@ -19,3 +19,45 @@ export const allMedReducers = (state = {}, action) => {
       return state;
   }
 };
+
+export const deleteMedReducers = (state = {}, action) => {
+  switch (action.type) {
+    case "DELETE_MED_REQUEST":
+      return {
+        loading: true,
+      };
+    case "DELETE_MED_SUCCESS":
+      return {
+        loading: false,
+        success: true,
+      };
+    case "DELETE_MED_FAILED":
+      return {
+        loading: false,
+        error: true,
+      };
+    default:
+      return state;
+  }
+};
+
+export const addMedReducers = (state = {}, action) => {
+  switch (action.type) {
+    case "ADD_MED_REQUEST":
+      return {
+        loading: true,
+      };
+    case "ADD_MED_SUCCESS":
+      return {
+        loading: false,
+        success: true,
+      };
+    case "ADD_MED_FAILED":
+      return {
+        loading: false,
+        error: true,
+      };
+    default:
+      return state;
+  }
+};

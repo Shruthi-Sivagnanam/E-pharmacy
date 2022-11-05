@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const medSchema = mongoose.Schema({
-  medname: {
+  name: {
     type: String,
     require,
   },

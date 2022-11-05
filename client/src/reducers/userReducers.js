@@ -44,3 +44,24 @@ export const userLoginReducers = (state = {}, action) => {
       return state;
   }
 };
+
+export const allUserReducers = (state = {}, action) => {
+  switch (action.type) {
+    case "ALL_USER_REQUEST":
+      return {
+        loading: true,
+      };
+    case "ALL_USER_SUCCESS":
+      return {
+        loading: false,
+        users: action.payload,
+      };
+    case "ALL_USER_FAILED":
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};

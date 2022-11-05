@@ -1,16 +1,19 @@
 import React, { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { allOrderAction } from "../action/orderAction";
+import { allUserOrderAction } from "../action/orderAction";
 import Error from "../components/Error";
 import SpinnerCircle from "../components/SpinnerCircle";
 
 export default function OrderPage() {
   const dispatch = useDispatch();
-  const orderData = useSelector((state) => state.allOrderReducers);
+  const orderData = useSelector((state) => state.allUserOrderReducers);
+  const userData = useSelector((state) => state.userLoginReducers);
+  const { user } = userData;
   const { loading, orders, error } = orderData;
   useEffect(() => {
-    dispatch(allOrderAction());
+    const userid = user._id;
+    dispatch(allUserOrderAction(userid));
   }, [dispatch]);
   return (
     <div className="row justify-content-center">
@@ -63,6 +66,12 @@ export default function OrderPage() {
                     <p>Order Id : {item._id}</p>
                   </Col>
                 </Row>
+                <hr />
+                {item.isDelivered === "Delivered" ? (
+                  <h4 style={{ color: "green" }}>Delivered</h4>
+                ) : (
+                  <h4 style={{ color: "red" }}>Not Delivered</h4>
+                )}
               </Container>
             </div>
           ))}

@@ -55,11 +55,37 @@ router.post("/placeorder", async (req, res) => {
 
 router.post("/allorder", (req, res) => {
   Order.find()
+    .sort({ createdAt: -1 })
     .then((result) => {
       res.send(result);
     })
     .catch((error) => {
       return res.status(400).json({ message: error });
+    });
+});
+
+router.post("/user/allorder", (req, res) => {
+  const { userid } = req.body;
+  Order.find({ userid })
+    .sort({ createdAt: -1 })
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((error) => {
+      return res.status(404).json({ message: error });
+    });
+});
+
+router.post("/update", (req, res) => {
+  const { orderid, item } = req.body;
+  //console.log(item);
+  Order.findByIdAndUpdate(orderid, item)
+    .then((result) => {
+      //console.log(result);
+      res.send("Saved Successfully");
+    })
+    .catch((error) => {
+      return res.status(404).json({ message: error });
     });
 });
 

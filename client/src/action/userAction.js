@@ -27,3 +27,14 @@ export const userLoginAction = (user) => async (dispatch) => {
 export const userLogoutAction = () => (dispatch) => {
   dispatch({ type: "USER_LOGOUT" });
 };
+
+export const allUserAction = () => async (dispatch) => {
+  dispatch({ type: "ALL_USER_REQUEST" });
+  try {
+    const response = await axios.get("/api/user/alluser");
+    console.log(response.data);
+    dispatch({ type: "ALL_USER_SUCCESS", payload: response.data });
+  } catch (error) {
+    dispatch({ type: "ALL_USER_FAILED", payload: error });
+  }
+};

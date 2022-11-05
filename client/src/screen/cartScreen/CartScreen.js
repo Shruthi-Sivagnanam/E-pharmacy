@@ -3,10 +3,15 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCartAction, deleteFromCart } from "../../action/cartAction";
 import Checkout from "../../components/Checkout";
+import Error from "../../components/Error";
+import SpinnerCircle from "../../components/SpinnerCircle";
+import Success from "../../components/Success";
 
 export default function CartScreen() {
   const cartState = useSelector((state) => state.addToCartReducers);
+  const orderData = useSelector((state) => state.orderReducers);
   const { cartItem, empty } = cartState;
+  const { loading, error, success } = orderData;
   var total = cartItem.reduce((x, item) => x + item.price * item.quantity, 0);
   const dispatch = useDispatch();
   return (
@@ -14,6 +19,21 @@ export default function CartScreen() {
       <div className="row justify-content-center">
         <div className="col-md-6">
           <h2>Med Bag</h2>
+          {loading && <SpinnerCircle />}
+          {error && (
+            <Error
+              heading={"Error"}
+              content={"Error in Payment!! Try sometimes latter"}
+            />
+          )}
+          {success && (
+            <Success
+              heading={"Paid Successfully!!"}
+              content={
+                "Ordered Successfully!! For further details go to MyOrders page"
+              }
+            />
+          )}
           {empty === false && <h6>Your med bag is empty</h6>}
           {cartItem.map((item) => (
             <div className="flex-container m-1">
@@ -92,17 +112,10 @@ export default function CartScreen() {
             </div>
             <h3>
               Grand Total :{" "}
-              {total < 200 ? (total = total + 10) : (total = total + 10)}
+              {total < 200 ? (total = total + 10) : (total = total + 0)}
             </h3>
             <div className="flex-container">
-              <div className="m-1 w-100 left">
-                {localStorage.getItem("user") && !empty ? (
-                  <Button>Cash on Delivery</Button>
-                ) : (
-                  <Button disabled>Cash on Delivery</Button>
-                )}
-              </div>
-              <div className="m-1 w-100 right">
+              <div className="m-1 w-100">
                 {localStorage.getItem("user") && !empty ? (
                   <Checkout amount={total} />
                 ) : (
